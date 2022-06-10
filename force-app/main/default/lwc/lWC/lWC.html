@@ -1,0 +1,34 @@
+<template>
+    
+    <select class="slds-select" onchange={handleClick1}>
+        <template for:each = {listViews} for:item="listViewItem">
+           <option label={listViewItem.Name} key={listViewItem.Id} value={listViewItem.Id}></option>
+        </template>
+   </select>
+   <template if:true={dt}>
+    <lightning-datatable data={listN} columns={columns} key-field="Id" onrowaction={handleRowAction}>
+    </lightning-datatable>
+   </template>
+
+  <template if:true={send}>
+    <lightning-input type="email" label="Email" class="emailField"> </lightning-input>
+    <lightning-button variant="base" label="Subbmit" title="Subbmit" onclick={sendEmail} class="slds-m-left_x-small"></lightning-button>
+
+  </template>
+
+
+
+   <div>
+    <lightning-card title="Upload Files" icon-name="custom:custom14">
+        <div class="slds-m-around_medium">
+            <lightning-input type="file" 
+            accept=".xlsx, .xls, .csv, .png, .doc, .docx, .pdf"
+            label="Attachment" onchange={openfileUpload}></lightning-input>
+        </div>
+        <template if:true={fileData}>
+            <p>{fileData.filename}</p>
+        </template>
+        <lightning-button variant="brand" label="submit" title="Submit" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+    </lightning-card>
+</div>
+</template>
