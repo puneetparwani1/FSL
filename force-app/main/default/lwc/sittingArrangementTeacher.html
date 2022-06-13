@@ -1,0 +1,81 @@
+<template>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+            <span>
+            <template if:true={classData}>
+                <select class="slds-select" onchange={handleClass}>
+                    <template for:each ={classData} for:item="classes">
+                       <option label={classes.Name} key={classes.Id} value={classes.Id}></option>
+                    </template>
+               </select>
+            </template>
+           </span>
+        </div>
+        <div class="slds-col">
+            <span style="margin: right 10px; "></span>
+        </div>
+        <div class="slds-col">
+            <span>
+                <lightning-checkbox-group name="Checkbox Group"
+                              options={options}
+                              value={value}
+                              onchange={handleChange}>
+                </lightning-checkbox-group>
+            </span>
+        </div>
+        <div class="slds-col">
+            <span>
+                <lightning-checkbox-group name="Checkbox Group"
+                              options={options1}
+                              value={value1}
+                              onchange={handleChange1}>
+                </lightning-checkbox-group>
+            </span>
+        </div>
+    
+    </div>
+    <template if:true={datatable}>
+        <div style="height: 300px;">
+            <lightning-datatable
+                    key-field="id"
+                    data={studentData}
+                    columns={columns}
+                    onrowaction={handleRowActions}
+                    onrowaction1={handleRowAction1}>
+            </lightning-datatable>
+        </div>
+    </template>
+    <template if:true={demandrows}>
+        <div class="slds-form-element slds-has-error">
+            <label class="slds-form-element__label" for="text-input-id-46">
+            <abbr class="slds-required" title="required">* </abbr>Enter Number of rows</label>
+            <div class="slds-form-element__control">
+            <input type="text" id="text-input-id-46" placeholder="Placeholder text…" required="" aria-describedby="error-message-id-47" class="Rows" aria-invalid="true" />
+            </div>
+            <div  class="row" id="error-message-id-47">Enter a value.</div>
+            <button class="slds-button slds-button_brand" onclick={handleRow} >Subbmit</button>
+            </div>
+    </template>
+    <template if:true={graphicalview}>
+        <template for:each={arr} for:item="row"> 
+        <div key={row.name} class="slds-grid">
+            <div class="slds-col slds-p-horizontal_medium">
+                <span >
+                <div class="slds-box div1 "  onclick={handleDiv1}   style="height: 100px; width: 20%;background:white;">
+                </div>
+                </span>
+            </div>
+            <div class="slds-col slds-p-horizontal_medium">
+                <span>
+                    <div class="slds-box div2" onclick={handleDiv2}  style="height: 100px; width: 20%;background:white;">
+                    </div>
+                </span>
+            </div>
+        
+        </div>
+    </template>
+</template>
+
+
+   
+</template>
